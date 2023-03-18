@@ -18,8 +18,8 @@ const UserInput = (props) => {
       name: nameToSend,
       age: ageToSend,
     };
-    console.log(newUser);
     props.onAddUser(newUser);
+
     setAge('');
     setName('');
   };

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ErrorInput from './components/error-input/ErrorInput';
 import UserInput from './components/user-input/UserInput';
 import UserList from './components/user-list/UserList';
 const STATIC_USERS = [
@@ -6,19 +7,32 @@ const STATIC_USERS = [
   { id: 'n2', name: 'YouRa', age: 25 },
 ];
 const App = () => {
-  const [recivedUser, setUsers] = useState(STATIC_USERS);
+  const [newTableUser, setUsers] = useState(STATIC_USERS);
+  const [newValid, setValid] = useState(true);
+
   const addUser = (user) => {
-    setUsers((prevTable) => {
-      console.log([user, ...prevTable]);
-      return [user, ...prevTable];
-    });
+    if (user.name !== '' && user.age !== '') {
+      setUsers((prevTable) => {
+        return [user, ...prevTable];
+      });
+    } else {
+      setValid(!newValid);
+    }
   };
-  return (
-    <div>
-      <UserInput onAddUser={addUser} />
-      <UserList usersTable={recivedUser} />
-    </div>
-  );
+  const closeModalHandler = () => {
+    setValid(true);
+  };
+  console.log(newTableUser);
+  if (newValid) {
+    return (
+      <div>
+        <UserInput onAddUser={addUser} />
+        <UserList usersTable={newTableUser} />
+      </div>
+    );
+  } else {
+    return <ErrorInput onCloseModal={closeModalHandler} />;
+  }
 };
 
 export default App;
