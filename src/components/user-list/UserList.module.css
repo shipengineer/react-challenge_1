@@ -1,0 +1,11 @@
+.back {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  /* border: 1px black solid; */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(50, 50, 50, 0.25);
+  margin-top: 50px;
+  width: 150%;
+  margin-left: -25%;
+}
